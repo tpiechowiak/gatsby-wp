@@ -7,6 +7,7 @@
  */
 
 module.exports = {
+  pathPrefix: "/wp",
   /**
    * Adding plugins to this array adds them to your Gatsby site.
    *

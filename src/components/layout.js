@@ -1,6 +1,8 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import parse from "html-react-parser"
+import React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import parse from "html-react-parser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 
 const Layout = ({ isHomePage, children }) => {
   const {
@@ -17,7 +19,7 @@ const Layout = ({ isHomePage, children }) => {
       }
     }
   `)
-  
+
   return (
     <div>
     <header className="global-header">
@@ -45,6 +47,14 @@ const Layout = ({ isHomePage, children }) => {
           <span style={{color: "#99BBBB"}}>;</span>
       </Link>
     )}
+    <h2>
+      <FontAwesomeIcon 
+        icon={faChevronDown}
+        style={{
+          color: "#fff"
+        }}
+      />
+    </h2>
     </header>
     <div className="global-wrapper" data-is-root-path={isHomePage}>
 

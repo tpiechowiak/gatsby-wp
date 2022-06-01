@@ -64,6 +64,7 @@ const BlogIndex = ({
         </>
       )}
       {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+      <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
     </Layout>
   )
 }
