@@ -7,13 +7,17 @@
 
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 
 const Bio = () => {
   const { author } = useStaticQuery(graphql`
     query BioQuery {
       # if there was more than one user, this would need to be filtered
       author: wpUser {
+        name
         firstName
+        lastName
         twitter: name
         description
         avatar {
@@ -34,19 +38,25 @@ const Bio = () => {
           src={avatarUrl}
         />
       )}
-      {author?.firstName && (
-        <p>
-          Written by <strong>{author.firstName}</strong>
-          {` `}
-          {author?.description || null}
-          {` `}
-          {author?.twitter && (
-            <a href={`https://twitter.com/${author?.twitter || ``}`}>
-              You should follow them on Twitter
-            </a>
-          )}
-        </p>
-      )}
+        {author?.firstName && (
+          <div>
+            <div
+              style={{
+                padding: "20px 0",
+              }}
+            >
+              Napisane przez:&nbsp; <strong>{author.firstName}&nbsp;{author.lastName}</strong>
+              {` `}
+              {author?.description || null}
+              {` `}
+              {author.name && (
+                <a className="github" href={`https://github.com/${author.name || ``}`}>
+                  <FontAwesomeIcon icon={faGithub} />&nbsp; GitHub {author.name}
+                </a>
+              )}
+            </div>
+          </div>
+        )}
     </div>
   )
 }

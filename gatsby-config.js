@@ -7,7 +7,6 @@
  */
 
 module.exports = {
-  pathPrefix: "/wp",
   /**
    * Adding plugins to this array adds them to your Gatsby site.
    *
@@ -19,7 +18,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Source+Code+Pro\:0,600;0,700;1,400`
+          `Source+Code+Pro\:0,600;0,700;1,400`,
+          `Poppins\:100;200;300;400;500;600;700;800;900`
         ],
         display: 'swap'
       }
