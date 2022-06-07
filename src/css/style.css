@@ -27,7 +27,7 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: Poppins, Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
+  --fontFamily-sans: Inter, Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
@@ -106,6 +106,15 @@ footer {
   padding: var(--spacing-6) var(--spacing-0);
 }
 
+footer .fa-wordpress {
+  line-height: 0px !important;
+  height: 16px;
+  width: 16px;
+  color: #0073AA;
+  background: #fff;
+  border-radius: 50px;
+}
+
 hr {
   background: var(--color-accent);
   height: 1px;
@@ -137,7 +146,8 @@ h6 {
 }
 
 h1 {
-  font-weight: var(--fontWeight-black);
+  font-family: 'Source Code Pro', monospace;
+  font-weight: var(--fontWeight-bold);
   font-size: var(--fontSize-6);
   color: var(--color-heading-black);
 }
@@ -251,6 +261,7 @@ table thead tr th {
 a {
   color: var(--color-primary);
   word-break: break-word;
+  text-decoration: none;
 }
 
 a:hover,
@@ -286,9 +297,9 @@ a:focus {
   background-repeat: repeat-x;
 }
 
-.global-header[data-is-root-path="true"] svg {
-  display: flex !important;
-  height: 1em !important;
+.global-header[data-is-root-path="true"] p {
+  display: flex;
+  height: 1em;
 }
 
 .global-header {
@@ -304,11 +315,11 @@ a:focus {
   align-items: center;
   align-content: space-between;
   background-repeat: repeat-x;
+  position: sticky;
 }
 
-.global-header svg {
-  display: none !important;
-  height: 0 !important;
+.global-header p {
+  display: none;
 }
 
 .icon-down {
