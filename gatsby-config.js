@@ -83,11 +83,11 @@ module.exports = {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
+        name: `React.js blog`,
+        short_name: `React.js blog`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
+        background_color: `#241B2F`,
+        theme_color: `#241B2F`,
         display: `minimal-ui`,
         icon: `content/assets/react-icon.png`,
       },
