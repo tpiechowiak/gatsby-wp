@@ -58,9 +58,9 @@
   --color-primary: #FEDE54;
   --color-text: #D4D3D7;
   --color-text-light: #4f5969;
-  --color-heading: #1a202c;
+  --color-heading: #FEDE54;
   --color-heading-black: black;
-  --color-accent: #d1dce5;
+  --color-accent: #443964;
 }
 
 ::-webkit-scrollbar {
@@ -73,11 +73,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(200, 200, 200, 0.1);
+  background: #3D3651;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: #4B4364;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #353048;
 }
 
 /* HTML elements */
@@ -115,6 +119,23 @@ footer .fa-wordpress {
   border-radius: 50px;
 }
 
+footer .fa-react:hover {
+  animation: rotate 5s infinite ease;
+  transition: .2s;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    transition: .2s;
+  }
+
+  to {
+    transform: rotate(360deg);
+    transition: .2s;
+  }
+}
+
 hr {
   background: var(--color-accent);
   height: 1px;
@@ -129,7 +150,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: 'Source Code Pro', monospace;
   margin-top: var(--spacing-12);
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
@@ -146,10 +167,9 @@ h6 {
 }
 
 h1 {
-  font-family: 'Source Code Pro', monospace;
   font-weight: var(--fontWeight-bold);
   font-size: var(--fontSize-6);
-  color: var(--color-heading-black);
+  color: var(--color-heading);
 }
 
 h2 {
@@ -184,6 +204,16 @@ h5 > a,
 h6 > a {
   text-decoration: none;
   color: inherit;
+}
+
+h1 > a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover,
+h5 > a:hover,
+h6 > a:hover {
+  text-decoration: none;
+  color: #dcc048;
 }
 
 /* Prose */
@@ -259,14 +289,35 @@ table thead tr th {
 /* Link */
 
 a {
-  color: var(--color-primary);
+  color: #F17ED3;
   word-break: break-word;
   text-decoration: none;
+  transition: .05s;
 }
 
 a:hover,
 a:focus {
   text-decoration: none;
+  color: #f8a5e3;
+  transition: .05s;
+}
+
+a[rel="prev"] {
+  padding: 10px 20px;
+  background: #262335;
+  color: var(--color-text);
+  border-left: 2px solid #57565E;
+}
+
+a[rel="next"] {
+  padding: 10px 20px;
+  background: #262335;
+  color: var(--color-text);
+  border-right: 2px solid #57565E;
+}
+
+a[rel="prev"]:hover, a[rel="next"]:hover {
+  background: #332e49;
 }
 
 /* Custom classes */
@@ -279,11 +330,11 @@ a:focus {
 }
 
 .global-wrapper[data-is-root-path="true"] .bio {
-  margin-bottom: var(--spacing-20);
+  margin-bottom: var(--spacing-8);
 }
 
 .global-header[data-is-root-path="true"] {
-  margin-bottom: var(--spacing-12);
+  margin-bottom: var(--spacing-8);
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
@@ -410,15 +461,29 @@ a.header-link-home:hover {
   margin-bottom: var(--spacing-0);
 }
 
-.bio a.github {
-  background: #fff;
+.bio .github {
+  background: var(--color-text);
   color: #161B22;
-  padding: 7px 10px;
+  padding: 7px 5px;
   border-radius: 5px;
   font-weight: 800;
   text-decoration: none;
   font-family: var(--fontFamily-sans);
-  margin: 10px 10px;
+  margin: 10px auto;
+  position: relative;
+  text-align: center;
+  width: 230px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 5px 27px -5px rgba(22, 27, 34, 1);
+  -moz-box-shadow: 0px 5px 27px -5px rgba(22, 27, 34, 1);
+  box-shadow: 0px 5px 27px -5px rgba(22, 27, 34, 1);
+  transition: .3s;
+}
+
+.bio .github:hover {
+  background: #161B22;
+  color: #fff;
+  transition: .3s;
 }
 
 .bio-avatar {
@@ -439,7 +504,29 @@ a.header-link-home:hover {
 }
 
 .blog-post-nav ul {
-  margin: var(--spacing-0);
+  /* margin: var(--spacing-0); */
+  padding: 1rem 0;
+}
+
+.article-body {
+  padding: 3% 4%;
+  text-align: justify;
+  background: #353048;
+  border-radius: 1rem;
+}
+
+.article-body img {
+  margin: 0 auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.article-body h2 {
+  text-align: left;
+}
+
+.article-description {
+  text-align: justify;
 }
 
 .gatsby-highlight {
@@ -456,5 +543,140 @@ a.header-link-home:hover {
   ul,
   ol {
     list-style-position: inside;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  body {
+    text-align: center;
+  }
+
+  .global-header[data-is-root-path="true"] {
+    padding: 0 0.3rem;
+  }
+
+  .main-heading {
+    font-size: var(--fontSize-3);
+  }
+
+  .article-body {
+    padding: 7%;
+  }
+
+  section[itemprop="articleBody"] h1,
+  section[itemprop="articleBody"] h2,
+  section[itemprop="articleBody"] h3,
+  section[itemprop="articleBody"] h4,
+  section[itemprop="articleBody"] h5,
+  section[itemprop="articleBody"] h6 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    text-align: center;
+  }
+
+  .global-header[data-is-root-path="true"] {
+    padding: 0 0.3rem;
+  }
+
+  .main-heading {
+    font-size: var(--fontSize-3);
+  }
+
+  .article-body {
+    padding: 7%;
+  }
+
+  section[itemprop="articleBody"] h1,
+  section[itemprop="articleBody"] h2,
+  section[itemprop="articleBody"] h3,
+  section[itemprop="articleBody"] h4,
+  section[itemprop="articleBody"] h5,
+  section[itemprop="articleBody"] h6 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    text-align: center;
+  }
+
+  .global-header[data-is-root-path="true"] {
+    padding: 0 0.3rem;
+  }
+
+  .main-heading {
+    font-size: var(--fontSize-3);
+  }
+
+  .article-body {
+    padding: 7%;
+  }
+
+  section[itemprop="articleBody"] h1,
+  section[itemprop="articleBody"] h2,
+  section[itemprop="articleBody"] h3,
+  section[itemprop="articleBody"] h4,
+  section[itemprop="articleBody"] h5,
+  section[itemprop="articleBody"] h6 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    text-align: center;
+  }
+
+  .global-header[data-is-root-path="true"] {
+    padding: 0 0.3rem;
+  }
+
+  .main-heading {
+    font-size: var(--fontSize-3);
+  }
+
+  .article-body {
+    padding: 7%;
+  }
+
+  section[itemprop="articleBody"] h1,
+  section[itemprop="articleBody"] h2,
+  section[itemprop="articleBody"] h3,
+  section[itemprop="articleBody"] h4,
+  section[itemprop="articleBody"] h5,
+  section[itemprop="articleBody"] h6 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    text-align: center;
+  }
+
+  .global-header[data-is-root-path="true"] {
+    padding: 0 0.3rem;
+  }
+
+  .main-heading {
+    font-size: var(--fontSize-3);
+  }
+
+  .article-body {
+    padding: 7%;
+  }
+
+  section[itemprop="articleBody"] h1,
+  section[itemprop="articleBody"] h2,
+  section[itemprop="articleBody"] h3,
+  section[itemprop="articleBody"] h4,
+  section[itemprop="articleBody"] h5,
+  section[itemprop="articleBody"] h6 {
+    text-align: center;
   }
 }

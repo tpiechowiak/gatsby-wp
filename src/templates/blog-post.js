@@ -1,7 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import parse from "html-react-parser"
+import parse, { domToReact } from 'html-react-parser';
+
+import PostCode from '../components/postcode';
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
@@ -20,6 +22,27 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
     data: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: post.featuredImage?.node?.alt || ``,
   }
+
+  const getLanguage = node => {
+    if (node.attribs.class != null) {
+      return node.attribs.class;
+    }
+    return null;
+  };
+
+  const getCode = node => {
+    if (node.children.length > 0 && node.children[0].name === 'code') {
+      return node.children[0].children;
+    } else {
+      return node.children;
+    }
+  };
+  
+  const replaceCode = node => {
+    if (node.name === 'pre') {
+      return node.children.length > 0 && <PostCode language={getLanguage(node)}>{domToReact(getCode(node))}</PostCode>;
+    }
+  };
 
   return (
     <Layout>
@@ -46,15 +69,15 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         </header>
 
         {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
+          <section itemProp="articleBody" className="article-body">{parse(post.content, {replace: replaceCode})}</section>
         )}
-
-        <hr />
 
         <footer>
           <Bio />
         </footer>
       </article>
+
+      <hr />
 
       <nav className="blog-post-nav">
         <ul
@@ -63,7 +86,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             flexWrap: `wrap`,
             justifyContent: `space-between`,
             listStyle: `none`,
-            padding: 0,
+            padding: "1rem 0",
           }}
         >
           <li>

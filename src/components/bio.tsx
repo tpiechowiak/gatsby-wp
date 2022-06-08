@@ -45,13 +45,16 @@ const Bio = () => {
                 padding: "20px 0",
               }}
             >
-              Napisane przez:&nbsp; <strong>{author.firstName}&nbsp;{author.lastName}</strong>
+              Autor:&nbsp; <strong>{author.firstName}&nbsp;{author.lastName}</strong>
               {` `}
               {author?.description || null}
               {` `}
+              <br/>
               {author.name && (
-                <a className="github" href={`https://github.com/${author.name || ``}`}>
-                  <FontAwesomeIcon icon={faGithub} />&nbsp; GitHub {author.name}
+                <a href={`https://github.com/${author.name || ``}`} target="_blank">
+                  <div className="github">
+                    <FontAwesomeIcon icon={faGithub} />&nbsp; GitHub {author.name}
+                  </div>
                 </a>
               )}
             </div>

@@ -14,25 +14,25 @@ const BlogIndex = ({
 
   if (!posts.length) {
     return (
-      <Layout pageType="archive" isHomePage>
+      <Layout isHomePage>
         <Seo title="All posts" />
         <Bio />
-        <p>
+        <span>
           No blog posts found. Add posts to your WordPress site and they'll
           appear here!
-        </p>
+        </span>
       </Layout>
     )
   }
   
   return (
-    <Layout pageType="archive" isHomePage>
+    <Layout isHomePage>
       <Seo title="All posts" />
 
       <Bio />
 
       <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
+        {posts.map((post) => {
           const postTitle = post.title
 
           return (
@@ -42,15 +42,17 @@ const BlogIndex = ({
                 itemScope
                 itemType="http://schema.org/Article"
               >
-                <header>
-                  <h2>
-                    <Link to={post.uri} itemProp="url">
-                      <span itemProp="headline">{parse(postTitle)}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.date}</small>
-                </header>
-                <section itemProp="description">{parse(post.excerpt)}</section>
+                <div className="article-body">
+                  <header>
+                    <h2>
+                      <Link to={post.uri} itemProp="url">
+                        <span itemProp="headline">{parse(postTitle)}</span>
+                      </Link>
+                    </h2>
+                    <small>{post.date}</small>
+                  </header>
+                  <section itemProp="description" className="article-description">{parse(post.excerpt)}</section>
+                </div>
               </article>
             </li>
           )
