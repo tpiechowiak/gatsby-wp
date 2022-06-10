@@ -525,6 +525,11 @@ a.header-link-home:hover {
   text-align: left;
 }
 
+.article-body li {
+  margin: 0 5%;
+  text-align: left;
+}
+
 .article-description {
   text-align: justify;
 }
